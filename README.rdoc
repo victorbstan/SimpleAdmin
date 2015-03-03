@@ -1,6 +1,10 @@
 = SimpleAdmin
   No frills
 
+== Installation
+
+gem install simple_admin_rails
+
 == Licence
 
 This project rocks and uses MIT-LICENSE.

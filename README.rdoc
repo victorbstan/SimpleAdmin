@@ -3,7 +3,7 @@
 
 == Installation
 
-gem install simple_admin_rails
+  gem install simple_admin_rails
 
 == Licence
 

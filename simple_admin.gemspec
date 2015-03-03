@@ -5,7 +5,7 @@ require "simple_admin/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "simple_admin"
+  s.name        = "simple_admin_rails"
   s.version     = SimpleAdmin::VERSION
   s.authors     = ["Victor Stan"]
   s.email       = ["victor.stan@gmail.com"]

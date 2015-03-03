@@ -1,0 +1,19 @@
+<table class="table table-bordered">
+  <tr>
+    <th>Model</td>
+    <th>Count</td>
+    <th>Visible</td>
+    <th>Editable</td>
+    <th>Reflections</td>
+  </tr>
+  <% @table_models.each do |tm| %>
+    <tr>
+      <td><%= tm.name %></td>
+      <td><%= tm.count %></td>
+      <td><%= @admin.visible_attributes_for_model(tm.name).join(", ") %></td>
+      <td><%= @admin.editable_attributes_for_model(tm.name).join(", ") %></td>
+      <td><%= tm.reflections.map{ |k, v| [k, v.class.name.demodulize].join(": ") }.join(", ") %></td>
+    </tr>
+  <% end %>
+</table>
+

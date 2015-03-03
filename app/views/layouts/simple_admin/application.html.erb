@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= SimpleAdmin.config_site_name %></title>
+
+  <!-- Bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+  <%= stylesheet_link_tag    "simple_admin/application", media: "all" %>
+  <%= javascript_include_tag "simple_admin/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+
+  <h2 class="page-header admin-header"><%= link_to SimpleAdmin.config_site_name, admin_path %></h2>
+
+  <% if flash[:notice] %>
+    <p class="alert alert-info"><%= flash[:notice] %></p>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <p class="alert alert-warning"><%= flash[:alert] %></p>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-4">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <% @table_models.each do |t_model| %>
+            <a href="<%= url_for admin_model_index_path(t_model) %>" class="list-group-item <%= 'active' if t_model.name == @model_name %> ">
+              <span class="badge pull-right"><%= t_model.count %></span>
+              <h4 class="list-group-item-heading"><%= t_model.name %></h4>
+            </a>
+          <% end %>
+        </div>
+      </div>
+
+      <% if @admin.extensions.any? %>
+        <hr>
+        <div class="row">
+          <div class="col-sm-12">
+            <% @admin.extensions.each do |ext| %>
+              <a href="<%= url_for admin_extension_path(ext.view_name) %>" class="list-group-item <%= 'active' if ext.title == @extension.try(:title) %> ">
+                <h4 class="list-group-item-heading"><%= ext.title %></h4>
+              </a>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="col-sm-8">
+      <%= yield %>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
